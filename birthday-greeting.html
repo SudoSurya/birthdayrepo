@@ -213,7 +213,7 @@
 
         /* Modal Styles */
         .modal {
-            display: none;
+            display: none !important;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -222,12 +222,15 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
             animation: fadeInModal 0.3s ease;
-            display: flex;
             justify-content: center;
             align-items: flex-start;
             padding: 20px;
             padding-top: 30px;
             overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex !important;
         }
 
         @keyframes fadeInModal {
@@ -534,15 +537,15 @@
         <h1>🌟 Happy Birthday! 🌟</h1>
         
         <div class="friend-name" id="friendName">
-            Dear Friend
+            Sahithi
         </div>
         
         <div class="message">
-            Today is your special day! Let's celebrate with joy, laughter, and wonderful moments.
+            Nuvvu na messages ki late ga reply ivvachu… kani naa life lo correct time ki vachav. Happy Birthday, slow-motion queen.
         </div>
         
         <div class="wishes">
-            <p>✨ May your day be filled with happiness</p>
+            <p>✨ Same cuteness, same drama, new age.</p>
             <p>🎂 May your wishes come true</p>
             <p>💝 May you have the best year ahead</p>
             <p>🌈 Cheers to you and your dreams!</p>
@@ -556,11 +559,11 @@
             <input 
                 type="text" 
                 id="nameInput" 
-                placeholder="Want the gift? Enter the name I call you..." 
+                placeholder="Nuvu em ani pilisthei naku istam!" 
                 onchange="checkName()"
             >
-            <div class="hint-text">💡 Guess the nickname for a special surprise gift!</div>
-            <button class="btn-primary" onclick="checkName()" style="width: 100%; margin-top: 15px;">Unlock Gift 🎁</button>
+            <div class="hint-text">💡 Gift Kavala? nuvu nannu em ani pilisthei naku nachuthundo aa name type chey!</div>
+            <button class="btn-primary" onclick="checkName()" style="width: 100%; margin-top: 15px;">Gift 🎁</button>
         </div>
 
         <div class="footer">
@@ -575,18 +578,16 @@
             
             <div class="gift-icon">🎁</div>
             
-            <div class="coupon-title">🎉 You Got It! 🎉</div>
-            <div class="coupon-subtitle">Here's your special gift coupon!</div>
+            <div class="coupon-title">🎉 Sadhinchav Bangaram 🎉</div>
+            <div class="coupon-subtitle">Pedha Gift em kadhule edho chinadhi</div>
             
             <div class="coupon-box">
-                <div class="coupon-value">50% OFF</div>
                 <div class="coupon-code" id="couponCode">BDAY2026</div>
                 <div class="coupon-offer">
-                    ✨ Valid for one special treat<br>
-                    🛍️ Use at your favorite place<br>
-                    💝 Extra birthday love included!
+                    ✨ Eppudu Work Avuthundho Naku telidhu<br>
+                    🛍️ Fast ga vadei<br>
+                    💝 Extra Gift Naa Subscription Eppudu Untundhi!
                 </div>
-                <div class="coupon-expiry">Valid until: Feb 28, 2026</div>
             </div>
             
             <button class="copy-btn" onclick="copyCoupon()">📋 Copy Coupon Code</button>
@@ -596,7 +597,7 @@
 
     <script>
         // Set the correct name to unlock the gift (you can customize this)
-        const correctName = "birthday"; // Change this to whatever nickname you want
+        const correctName = "bangaram"; // Change this to whatever nickname you want
 
         // Confetti animation
         function createConfetti() {
@@ -641,11 +642,10 @@
 
         function toggleMessage() {
             const messages = [
-                "You make the world a better place! 🌍",
-                "Your smile brightens everyone's day! 😊",
-                "You're an amazing friend! 👯",
-                "Here's to your best year yet! 🥳",
-                "You deserve all the happiness! 💫"
+                "Love Youuuu 💖",
+                "Love Youuuu 💖",
+                "Love Youuuuuuuu 💖",
+                "Love Youuuuuu 💖",
             ];
             
             const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -669,16 +669,9 @@
             } else {
                 // Wrong name - try again with cute UI
                 const attempts = [
-                    { emoji: '😅', text: "Aww, that's not right!", subtext: "Try again, you got this!" },
-                    { emoji: '🙈', text: "Oops! Wrong nickname!", subtext: "Think harder for me!" },
-                    { emoji: '🤭', text: "Nope nope!", subtext: "That's not what I go by!" },
-                    { emoji: '💕', text: "Not this one sweetie!", subtext: "Keep guessing!" },
-                    { emoji: '😄', text: "Haha, nice try!", subtext: "But that's not me!" },
-                    { emoji: '🥰', text: "Almost there!", subtext: "But not quite... try once more!" },
-                    { emoji: '😊', text: "Oh no! Wrong!", subtext: "You'll get it, I believe in you!" },
-                    { emoji: '🤫', text: "Psst! That's not it!", subtext: "Take another guess!" },
-                    { emoji: '😆', text: "Wrong guess!", subtext: "But I love your effort!" },
-                    { emoji: '💭', text: "Not the one!", subtext: "What else do you call me?" }
+                    { emoji: '😅', text: "Aww, Chusi Type chey Madam", subtext: "Try again, you got this!" },
+                    { emoji: '🙈', text: "Oops! Papa", subtext: "Think harder for me!" },
+                    { emoji: '💕', text: "Not this one sweetie!", subtext: "Keep guessing!" }
                 ];
                 const randomAttempt = attempts[Math.floor(Math.random() * attempts.length)];
                 showCuteNotification(randomAttempt);
@@ -688,13 +681,13 @@
 
         function openModal() {
             const modal = document.getElementById('giftModal');
-            modal.style.display = 'block';
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
         }
 
         function closeModal() {
             const modal = document.getElementById('giftModal');
-            modal.style.display = 'none';
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto'; // Re-enable scrolling when modal is closed
         }
 
@@ -800,7 +793,7 @@
             notification.className = 'notification';
             notification.innerHTML = `
                 <div class="notification-emoji">💭</div>
-                <div class="notification-text">Oops! Empty field!</div>
+                <div class="notification-text">Oops! Chusi Type Chey Madam</div>
                 <div class="notification-subtext">Don't be shy... tell me what you call me! 💕</div>
                 <button class="notification-btn" onclick="closeNotification()">OK, let me try! ✨</button>
             `;
