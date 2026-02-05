@@ -27,11 +27,13 @@
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
-            padding: 40px 25px;
+            padding: 20px 15px;
             max-width: 500px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             animation: slideIn 0.8s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         @keyframes slideIn {
@@ -46,10 +48,10 @@
         }
 
         .emoji-balloons {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 40px;
+            margin-bottom: 10px;
             animation: bounce 2s infinite;
-            letter-spacing: 15px;
+            letter-spacing: 10px;
         }
 
         @keyframes bounce {
@@ -62,9 +64,9 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: #667eea;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             font-weight: bold;
             animation: fadeInDown 1s ease-out;
         }
@@ -81,10 +83,10 @@
         }
 
         .friend-name {
-            font-size: 2rem;
+            font-size: 1.4rem;
             color: #764ba2;
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 12px;
             animation: fadeInUp 1s ease-out 0.2s both;
         }
 
@@ -100,25 +102,25 @@
         }
 
         .message {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #333;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            line-height: 1.5;
+            margin-bottom: 12px;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .wishes {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 20px;
+            padding: 12px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 12px;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .wishes p {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: 500;
         }
 
@@ -135,8 +137,8 @@
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 1rem;
+            padding: 10px 20px;
+            font-size: 0.9rem;
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -182,7 +184,7 @@
         }
 
         .input-group {
-            margin-top: 30px;
+            margin-top: 12px;
             animation: fadeInUp 1s ease-out 1s both;
         }
 
@@ -203,9 +205,9 @@
         }
 
         .footer {
-            margin-top: 30px;
+            margin-top: 12px;
             color: #999;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             animation: fadeInUp 1s ease-out 1.2s both;
         }
 
@@ -496,24 +498,24 @@
         /* Desktop responsiveness */
         @media (min-width: 768px) {
             .container {
-                padding: 60px 40px;
+                padding: 30px 30px;
             }
 
             h1 {
-                font-size: 3.5rem;
+                font-size: 2.2rem;
             }
 
             .friend-name {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
 
             .message {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             button {
-                padding: 18px 40px;
-                font-size: 1.1rem;
+                padding: 12px 30px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -540,7 +542,6 @@
         </div>
 
         <div class="buttons">
-            <button class="btn-primary" onclick="celebrateClick()">Celebrate! 🎊</button>
             <button class="btn-secondary" onclick="toggleMessage()">Special Message ✉️</button>
         </div>
 
@@ -799,11 +800,16 @@
             document.body.appendChild(notification);
         }
 
-        // Auto-play celebration on load
+        // Auto-play celebration on load and infinite loop
         window.addEventListener('load', function() {
             setTimeout(() => {
                 createConfetti();
             }, 500);
+            
+            // Keep creating confetti every 3 seconds infinitely
+            setInterval(() => {
+                createConfetti();
+            }, 3000);
         });
     </script>
 </body>
