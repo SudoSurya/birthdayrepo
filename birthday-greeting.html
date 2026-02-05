@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px 25px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji-balloons {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+            letter-spacing: 15px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .friend-name {
+            font-size: 2rem;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .wishes {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .wishes p {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .wishes p:last-child {
+            margin-bottom: 0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #ffecd2;
+            color: #764ba2;
+            border: 2px solid #764ba2;
+        }
+
+        .btn-secondary:hover {
+            background: #fcb69f;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-1px);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+        }
+
+        .input-group {
+            margin-top: 30px;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 0.9rem;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeInModal 0.3s ease;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            margin: 50% auto;
+            padding: 30px;
+            border-radius: 25px;
+            width: 85%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            animation: popUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes popUp {
+            0% {
+                transform: scale(0) rotateY(180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            color: #764ba2;
+            float: right;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: -10px -10px 0 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: #667eea;
+            transform: rotate(90deg);
+        }
+
+        .close-modal:active {
+            transform: rotate(90deg) scale(0.95);
+        }
+
+        .gift-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: giftBounce 0.8s infinite;
+        }
+
+        @keyframes giftBounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.05);
+            }
+        }
+
+        .coupon-title {
+            font-size: 1.8rem;
+            color: #764ba2;
+            font-weight: bold;
+            margin: 20px 0 15px 0;
+        }
+
+        .coupon-subtitle {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .coupon-box {
+            background: white;
+            border: 3px dashed #764ba2;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .coupon-box::before,
+        .coupon-box::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .coupon-box::before {
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .coupon-box::after {
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .coupon-code {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .coupon-value {
+            font-size: 1.3rem;
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .coupon-offer {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .coupon-expiry {
+            font-size: 0.85rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .hint-text {
+            font-size: 0.85rem;
+            color: #667eea;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Wrong Name Notification */
+        .notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 20, 147, 0.4);
+            z-index: 2000;
+            text-align: center;
+            max-width: 90%;
+            animation: notificationPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes notificationPop {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotateZ(-20deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotateZ(0);
+                opacity: 1;
+            }
+        }
+
+        .notification-emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: notificationEmoji 0.6s ease-in-out;
+        }
+
+        @keyframes notificationEmoji {
+            0% { transform: scale(0) rotate(-180deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        .notification-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .notification-subtext {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .notification-btn {
+            background: white;
+            color: #ff1493;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .notification-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-btn:active {
+            transform: scale(0.98);
+        }
+
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            animation: overlayFadeIn 0.3s ease;
+        }
+
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Desktop responsiveness */
+        @media (min-width: 768px) {
+            .container {
+                padding: 60px 40px;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .friend-name {
+                font-size: 2.5rem;
+            }
+
+            .message {
+                font-size: 1.2rem;
+            }
+
+            button {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji-balloons">🎈🎉🎁</div>
+        
+        <h1>🌟 Happy Birthday! 🌟</h1>
+        
+        <div class="friend-name" id="friendName">
+            Dear Friend
+        </div>
+        
+        <div class="message">
+            Today is your special day! Let's celebrate with joy, laughter, and wonderful moments.
+        </div>
+        
+        <div class="wishes">
+            <p>✨ May your day be filled with happiness</p>
+            <p>🎂 May your wishes come true</p>
+            <p>💝 May you have the best year ahead</p>
+            <p>🌈 Cheers to you and your dreams!</p>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-primary" onclick="celebrateClick()">Celebrate! 🎊</button>
+            <button class="btn-secondary" onclick="toggleMessage()">Special Message ✉️</button>
+        </div>
+
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="nameInput" 
+                placeholder="Want the gift? Enter the name I call you..." 
+                onchange="checkName()"
+            >
+            <div class="hint-text">💡 Guess the nickname for a special surprise gift!</div>
+            <button class="btn-primary" onclick="checkName()" style="width: 100%; margin-top: 15px;">Unlock Gift 🎁</button>
+        </div>
+
+        <div class="footer">
+            <p>🎂 Wishing you the happiest of birthdays! 🎂</p>
+        </div>
+    </div>
+
+    <!-- Gift Coupon Modal -->
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()" title="Close">&times;</button>
+            
+            <div class="gift-icon">🎁</div>
+            
+            <div class="coupon-title">🎉 You Got It! 🎉</div>
+            <div class="coupon-subtitle">Here's your special gift coupon!</div>
+            
+            <div class="coupon-box">
+                <div class="coupon-value">50% OFF</div>
+                <div class="coupon-code" id="couponCode">BDAY2026</div>
+                <div class="coupon-offer">
+                    ✨ Valid for one special treat<br>
+                    🛍️ Use at your favorite place<br>
+                    💝 Extra birthday love included!
+                </div>
+                <div class="coupon-expiry">Valid until: Feb 28, 2026</div>
+            </div>
+            
+            <button class="copy-btn" onclick="copyCoupon()">📋 Copy Coupon Code</button>
+            <button class="btn-secondary" onclick="closeModal()" style="width: 100%; margin-top: 10px;">Close Gift</button>
+        </div>
+    </div>
+
+    <script>
+        // Set the correct name to unlock the gift (you can customize this)
+        const correctName = "birthday"; // Change this to whatever nickname you want
+
+        // Confetti animation
+        function createConfetti() {
+            const colors = ['#667eea', '#764ba2', '#ffecd2', '#fcb69f', '#ff6b6b'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.opacity = '1';
+                confetti.style.borderRadius = '50%';
+                
+                document.body.appendChild(confetti);
+                
+                const duration = Math.random() * 2 + 2;
+                const xMove = (Math.random() - 0.5) * 200;
+                
+                confetti.animate([
+                    {
+                        transform: 'translateY(0) translateX(0) rotate(0deg)',
+                        opacity: 1
+                    },
+                    {
+                        transform: `translateY(${window.innerHeight + 20}px) translateX(${xMove}px) rotate(360deg)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                setTimeout(() => confetti.remove(), duration * 1000);
+            }
+        }
+
+        function celebrateClick() {
+            createConfetti();
+            playSound();
+        }
+
+        function toggleMessage() {
+            const messages = [
+                "You make the world a better place! 🌍",
+                "Your smile brightens everyone's day! 😊",
+                "You're an amazing friend! 👯",
+                "Here's to your best year yet! 🥳",
+                "You deserve all the happiness! 💫"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }
+
+        function checkName() {
+            const nameInput = document.getElementById('nameInput').value.trim().toLowerCase();
+            
+            if (nameInput === '') {
+                showEmptyNotification();
+                return;
+            }
+            
+            if (nameInput === correctName.toLowerCase()) {
+                // Correct name - show the gift!
+                openModal();
+                createConfetti();
+                playSound();
+                document.getElementById('nameInput').value = '';
+            } else {
+                // Wrong name - try again with cute UI
+                const attempts = [
+                    { emoji: '😅', text: "Aww, that's not right!", subtext: "Try again, you got this!" },
+                    { emoji: '🙈', text: "Oops! Wrong nickname!", subtext: "Think harder for me!" },
+                    { emoji: '🤭', text: "Nope nope!", subtext: "That's not what I go by!" },
+                    { emoji: '💕', text: "Not this one sweetie!", subtext: "Keep guessing!" },
+                    { emoji: '😄', text: "Haha, nice try!", subtext: "But that's not me!" },
+                    { emoji: '🥰', text: "Almost there!", subtext: "But not quite... try once more!" },
+                    { emoji: '😊', text: "Oh no! Wrong!", subtext: "You'll get it, I believe in you!" },
+                    { emoji: '🤫', text: "Psst! That's not it!", subtext: "Take another guess!" },
+                    { emoji: '😆', text: "Wrong guess!", subtext: "But I love your effort!" },
+                    { emoji: '💭', text: "Not the one!", subtext: "What else do you call me?" }
+                ];
+                const randomAttempt = attempts[Math.floor(Math.random() * attempts.length)];
+                showCuteNotification(randomAttempt);
+                document.getElementById('nameInput').value = '';
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById('giftModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('giftModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling when modal is closed
+        }
+
+        function copyCoupon() {
+            const couponCode = document.getElementById('couponCode').innerText;
+            navigator.clipboard.writeText(couponCode).then(() => {
+                const btn = event.target;
+                const originalText = btn.innerText;
+                btn.innerText = '✅ Copied!';
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            }).catch(() => {
+                alert('Coupon Code: ' + couponCode);
+            });
+        }
+
+        function playSound() {
+            // Create a fun beep sound using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+
+        // Handle Enter key in input
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkName();
+            }
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('giftModal');
+            if (e.target == modal) {
+                closeModal();
+            }
+        });
+
+        function showCuteNotification(attemptData) {
+            const existingNotification = document.getElementById('cuteNotification');
+            const existingOverlay = document.getElementById('notificationOverlay');
+            if (existingNotification) existingNotification.remove();
+            if (existingOverlay) existingOverlay.remove();
+
+            const overlay = document.createElement('div');
+            overlay.id = 'notificationOverlay';
+            overlay.className = 'notification-overlay';
+            document.body.appendChild(overlay);
+
+            const notification = document.createElement('div');
+            notification.id = 'cuteNotification';
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div class="notification-emoji">${attemptData.emoji}</div>
+                <div class="notification-text">${attemptData.text}</div>
+                <div class="notification-subtext">${attemptData.subtext}</div>
+                <button class="notification-btn" onclick="closeNotification()">Try Again ✨</button>
+            `;
+            document.body.appendChild(notification);
+        }
+
+        function closeNotification() {
+            const notification = document.getElementById('cuteNotification');
+            const overlay = document.getElementById('notificationOverlay');
+            if (notification) {
+                notification.style.animation = 'notificationPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) reverse';
+                setTimeout(() => notification.remove(), 400);
+            }
+            if (overlay) overlay.remove();
+            document.getElementById('nameInput').focus();
+        }
+
+        function showEmptyNotification() {
+            const existingNotification = document.getElementById('cuteNotification');
+            const existingOverlay = document.getElementById('notificationOverlay');
+            if (existingNotification) existingNotification.remove();
+            if (existingOverlay) existingOverlay.remove();
+
+            const overlay = document.createElement('div');
+            overlay.id = 'notificationOverlay';
+            overlay.className = 'notification-overlay';
+            document.body.appendChild(overlay);
+
+            const notification = document.createElement('div');
+            notification.id = 'cuteNotification';
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div class="notification-emoji">💭</div>
+                <div class="notification-text">Oops! Empty field!</div>
+                <div class="notification-subtext">Don't be shy... tell me what you call me! 💕</div>
+                <button class="notification-btn" onclick="closeNotification()">OK, let me try! ✨</button>
+            `;
+            document.body.appendChild(notification);
+        }
+
+        // Auto-play celebration on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                createConfetti();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
